@@ -19,7 +19,8 @@ public class Despertador {
     
     public static void main(String[] args) {
        
-
+       Display obx = new Display(); 
+       obx.setVisible(true);
        
     }
            
