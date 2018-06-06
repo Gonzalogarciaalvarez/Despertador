@@ -6,6 +6,14 @@
 
 package despertador;
 
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 /**
  *
@@ -13,5 +21,28 @@ package despertador;
  */
 
 public class Sonido {
+    
+    public static Clip clip;
 
+    public static void ReproducirSonido(String nombreSonido) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(nombreSonido).getAbsoluteFile());
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
+
+    }
+
+    public static void pararSonido(boolean parado) {
+
+        if (parado == true) {
+            clip.stop();
+        }
+    }
+    
+    
 }
